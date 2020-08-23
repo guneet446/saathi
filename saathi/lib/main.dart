@@ -116,45 +116,19 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: Text('Medicines'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Medicines',
-                  home: Medicines(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Medicines()));
               },
             ),
             ListTile(
               title: Text('Reminders'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Prescriptions',
-                  home: Reminders(),
-
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reminders()));
               },
             ),
             ListTile(
               title: Text('Prescriptions'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner : false,
-                  title: 'Prescriptions',
-                  home: Prescriptions(),
-
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Prescriptions()));
               },
             ),
             ListTile(
@@ -179,18 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: Text('My Account'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner : false,
-                  title: 'My Account',
-                  home: MyAccount(),
-
-                ));
-                /*Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyHomePage()),);*/
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyAccount()));
               },
             ),
           ],
@@ -217,92 +180,72 @@ class Medicines extends StatelessWidget {
           },
         ),
       ),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            Container(
-              height: 100.0,
-              child: DrawerHeader(
-                child: Text(
-                  'At your sevice',
-                  style: TextStyle(fontSize: 40.0),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
+        drawer: Drawer(
+          // Add a ListView to the drawer. This ensures the user can scroll
+          // through the options in the drawer if there isn't enough vertical
+          // space to fit everything.
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              Container(
+                height: 100.0,
+                child: DrawerHeader(
+                  child: Text(
+                    'At your service',
+                    style: TextStyle(fontSize: 40.0),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                  ),
                 ),
               ),
-            ),
-            ListTile(
-              title: Text('go back'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Medicines',
-                  home:MyApp(),
-                ));
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Reminders'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Prescriptions',
-                  home: Reminders(),
+              ListTile(
+                title: Text('Home'),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyHomePage()));
+                },
+              ),
+              ListTile(
+                title: Text('Reminders'),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reminders()));
+                },
+              ),
+              ListTile(
+                title: Text('Prescriptions'),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Prescriptions()));
+                },
+              ),
+              ListTile(
+                title: Text('Contacts'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
 
-                ));
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Prescriptions'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner : false,
-                  title: 'Prescriptions',
-                  home: Prescriptions(),
-
-                ));
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Contacts'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('House Help'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-          ],
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('House Help'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('My Account'),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyAccount()));
+                },
+              ),
+            ],
+          ),
         ),
-      ),
     );
   }
 }
@@ -354,7 +297,7 @@ class _PrescriptionsState extends State<Prescriptions> {
               height: 100.0,
               child: DrawerHeader(
                 child: Text(
-                  'At your sevice',
+                  'At your service',
                   style: TextStyle(fontSize: 40.0),
                 ),
                 decoration: BoxDecoration(
@@ -363,50 +306,23 @@ class _PrescriptionsState extends State<Prescriptions> {
               ),
             ),
             ListTile(
-              title: Text('go back'),
+              title: Text('Home'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Saathi',
-                  home: MyApp(),
-
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyHomePage()));
               },
             ),
             ListTile(
               title: Text('Medicines'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Medicines',
-                  home: Medicines(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Medicines()));
               },
             ),
             ListTile(
               title: Text('Reminders'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Reminders',
-                  home: Reminders(),
-
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reminders()));
               },
             ),
-
             ListTile(
               title: Text('Contacts'),
               onTap: () {
@@ -424,6 +340,12 @@ class _PrescriptionsState extends State<Prescriptions> {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('My Account'),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyAccount()));
               },
             ),
           ],
@@ -470,7 +392,7 @@ class Reminders extends StatelessWidget {
               height: 100.0,
               child: DrawerHeader(
                 child: Text(
-                  'At your sevice',
+                  'At your service',
                   style: TextStyle(fontSize: 40.0),
                 ),
                 decoration: BoxDecoration(
@@ -479,47 +401,21 @@ class Reminders extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('go back'),
+              title: Text('Home'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Saathi',
-                  home:MyApp(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyHomePage()));
               },
             ),
             ListTile(
               title: Text('Medicines'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Medicines',
-                  home: Medicines(),
-
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Medicines()));
               },
             ),
             ListTile(
               title: Text('Prescriptions'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner : false,
-                  title: 'Prescriptions',
-                  home: Prescriptions(),
-
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Prescriptions()));
               },
             ),
             ListTile(
@@ -539,6 +435,12 @@ class Reminders extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('My Account'),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyAccount()));
               },
             ),
           ],
@@ -596,7 +498,7 @@ class MyAccount extends StatelessWidget {
               height: 100.0,
               child: DrawerHeader(
                 child: Text(
-                  'At your sevice',
+                  'At your service',
                   style: TextStyle(fontSize: 40.0),
                 ),
                 decoration: BoxDecoration(
@@ -605,47 +507,27 @@ class MyAccount extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('go back'),
+              title: Text('Home'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Saathi',
-                  home:MyApp(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyHomePage()));
               },
             ),
             ListTile(
               title: Text('Medicines'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Medicines',
-                  home: Medicines(),
-
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Medicines()));
+              },
+            ),
+            ListTile(
+              title: Text('Reminders'),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reminders()));
               },
             ),
             ListTile(
               title: Text('Prescriptions'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner : false,
-                  title: 'Prescriptions',
-                  home: Prescriptions(),
-
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Prescriptions()));
               },
             ),
             ListTile(

@@ -61,10 +61,9 @@ class _SignInState extends State<SignIn> {
                       });
                     }
                     else {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => MyHomePage()),
-                      );
+                      runApp(MaterialApp(
+                        home: MyHomePage(),
+                      ));
                     }
                   }
                 },

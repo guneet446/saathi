@@ -91,10 +91,11 @@ class _RegisterState extends State<Register> {
                       });
                     }
                     else {
-                      Navigator.pushReplacement(
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyHomePage()));
+                      /*Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => Wrapper()),
-                      );
+                        MaterialPageRoute(builder: (context) => MyHomePage()),
+                      );*/
                   }
                   }
                 },
