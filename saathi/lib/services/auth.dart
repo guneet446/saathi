@@ -24,12 +24,13 @@ class AuthService {
     }
   }
 
-  Future register(String email, String password, String name, String age) async {
+  Future register(String email, String password, String name, String age, String bloodGroup, String emergencyContact1, String emergencyContact2) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = result.user;
 
-      await DatabaseService(uid: user.uid).updateUserData(name, age);
+      await DatabaseService(uid: user.uid).updateUserData(name, age, bloodGroup, emergencyContact1, emergencyContact2);
+      await DatabaseService(uid: user.uid).setPrescription(null);
 
       return _userFromFirebaseUser(user);
     } catch(e) {
