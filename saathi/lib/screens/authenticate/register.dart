@@ -20,6 +20,9 @@ class _RegisterState extends State<Register> {
   String error = '';
   String emergencyContact1 = '';
   String emergencyContact2 = '';
+  String number_1 = '';
+  String number_2 = '';
+  String number_3 = '';
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +48,6 @@ class _RegisterState extends State<Register> {
                   setState(() => email = val);
                 },
               ),
-
               SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(
@@ -53,13 +55,14 @@ class _RegisterState extends State<Register> {
                 ),
                 obscureText: true,
                 validator: (val) {
-                  return val.length < 6 ? 'Enter a password having more than 6 characters' : null;
+                  return val.length < 6
+                      ? 'Enter a password having more than 6 characters'
+                      : null;
                 },
                 onChanged: (val) {
                   setState(() => password = val);
-              },
+                },
               ),
-
               SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(
@@ -72,7 +75,6 @@ class _RegisterState extends State<Register> {
                   setState(() => name = val);
                 },
               ),
-
               SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(
@@ -85,7 +87,6 @@ class _RegisterState extends State<Register> {
                   setState(() => age = val);
                 },
               ),
-
               SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(
@@ -113,6 +114,40 @@ class _RegisterState extends State<Register> {
                 ),
                 onChanged: (val) {
                   setState(() => emergencyContact2 = val);
+                },
+              ),
+
+              SizedBox(height: 10),
+              TextFormField(
+                validator: (val) {
+                  return val.isEmpty
+                      ? 'Enter your family contact number'
+                      : null;
+                },
+                onChanged: (val) {
+                  setState(() => number_1 = val);
+                },
+              ),
+              SizedBox(height: 10),
+              TextFormField(
+                validator: (val) {
+                  return val.isEmpty
+                      ? 'Enter your family contact number'
+                      : null;
+                },
+                onChanged: (val) {
+                  setState(() => number_2 = val);
+                },
+              ),
+              SizedBox(height: 10),
+              TextFormField(
+                validator: (val) {
+                  return val.isEmpty
+                      ? 'Enter your family contact number'
+                      : null;
+                },
+                onChanged: (val) {
+                  setState(() => number_3 = val);
                 },
               ),
 
