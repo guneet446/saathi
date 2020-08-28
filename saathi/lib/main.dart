@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get_it/get_it.dart';
@@ -290,21 +292,28 @@ class Prescriptions extends StatefulWidget {
 }
 
 class _PrescriptionsState extends State<Prescriptions> {
-  final _picker = ImagePicker();
-  PickedFile _image;
+  File _image;
 
   @override
   Widget build(BuildContext context) {
     print('Prescription');
     return Scaffold(
       appBar: AppBar(title: Text('Prescriptions')),
-      body: Center(
-        child: RaisedButton.icon(
-          label: _image == null ? Text('Add a new prescription') : Text(
-              'Prescription added'),
-          icon: Icon(Icons.add_a_photo),
-          onPressed: _getImage,
-        ),
+      body: Column(
+        children: <Widget>[
+          RaisedButton.icon(
+            label: _image == null ? Text('Add a new prescription') : Text('Prescription added'),
+            icon: Icon(Icons.add_a_photo),
+            onPressed: _getImage,
+          ),
+          Container(
+              child: Image.file(
+                _image,
+              height: 200,
+              width: 200,
+              ),
+          ),
+        ],
       ),
       drawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
@@ -375,7 +384,8 @@ class _PrescriptionsState extends State<Prescriptions> {
     );
   }
   Future _getImage() async{
-    PickedFile image = await _picker.getImage(source: ImageSource.gallery);
+    //PickedFile image = await _picker.getImage(source: ImageSource.gallery);
+    File image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
     setState(() {
       _image = image;
