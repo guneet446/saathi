@@ -261,6 +261,34 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
+              title: Text('Blood Pressure'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Medicines',
+                  home: BloodPressure(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Sugar'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Sugar',
+                  home: Sugar(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
               title: Text('Contacts'),
               onTap: () {
                 // Update the state of the app
@@ -348,6 +376,34 @@ class Medicines extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => Prescriptions()));
+              },
+            ),
+            ListTile(
+              title: Text('Blood Pressure'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Blood Pressure',
+                  home: BloodPressure(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Sugar'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Sugar',
+                  home: Sugar(),
+                ));
+                Navigator.pop(context);
               },
             ),
             ListTile(
@@ -460,6 +516,34 @@ class _PrescriptionsState extends State<Prescriptions> {
               },
             ),
             ListTile(
+              title: Text('Blood Pressure'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Blood Pressure',
+                  home: BloodPressure(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Sugar'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Sugar',
+                  home: Sugar(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
               title: Text('Contacts'),
               onTap: () {
                 // Update the state of the app
@@ -560,6 +644,34 @@ class Reminders extends StatelessWidget {
               },
             ),
             ListTile(
+              title: Text('Blood Pressure'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Blood Pressure',
+                  home: BloodPressure(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Sugar'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Sugar',
+                  home: Sugar(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
               title: Text('Contacts'),
               onTap: () {
                 // Update the state of the app
@@ -601,6 +713,326 @@ class NewReminder extends StatelessWidget {
         title: Text("New reminder"),
       ),
       body: Center(child: Text('heyyy')),
+    );
+  }
+}
+
+class BloodPressure extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Blood Pressure')),
+      body: ListView(
+        children: const <Widget>[
+          Card(
+            child: ListTile(
+              title: Text('Systolic: 120     Diastolic: 80 '),
+              subtitle: Text('Date: 21/08/20'),
+            ),
+          ),
+          Card(
+            child: ListTile(
+                title: Text('Systolic: 132     Diastolic: 75'),
+                subtitle: Text('Date: 22/08/20')),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Systolic: 125     Diastolic: 72'),
+              subtitle: Text('Date: 23/08/20'),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Systolic: 130     Diastolic: 77 '),
+              subtitle: Text('Date: 24/08/20'),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Systolic: 135     Diastolic: 70 '),
+              subtitle: Text('Date: 25/08/20'),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Systolic: 126     Diastolic: 78 '),
+              subtitle: Text('Date: 26/08/20'),
+            ),
+          ),
+        ],
+      ),
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            Container(
+              height: 100.0,
+              child: DrawerHeader(
+                child: Text(
+                  'At your sevice',
+                  style: TextStyle(fontSize: 40.0),
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('go back'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Medicines',
+                  home: MyApp(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Medicines'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Medicines',
+                  home: Medicines(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Reminders'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Reminders',
+                  home: Reminders(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Prescriptions'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Prescriptions',
+                  home: Prescriptions(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Sugar'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Sugar',
+                  home: Sugar(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Contacts'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('House Help'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Sugar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Sugar')),
+      body: ListView(
+        children: const <Widget>[
+          Card(
+            child: ListTile(
+              title: Text('Before meal: 4.2     After meal: 6.2 '),
+              subtitle: Text('Date: 21/08/20'),
+            ),
+          ),
+          Card(
+            child: ListTile(
+                title: Text('Before meal: 4.5     After meal: 5.8'),
+                subtitle: Text('Date: 22/08/20')),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Before meal: 4.3     After meal: 6.0'),
+              subtitle: Text('Date: 23/08/20'),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Before meal: 5.0     After meal: 5.1 '),
+              subtitle: Text('Date: 24/08/20'),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Before meal: 4.7     After meal: 6.3 '),
+              subtitle: Text('Date: 25/08/20'),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Before meal: 5.2     After meal: 6.8 '),
+              subtitle: Text('Date: 26/08/20'),
+            ),
+          ),
+        ],
+      ),
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            Container(
+              height: 100.0,
+              child: DrawerHeader(
+                child: Text(
+                  'At your sevice',
+                  style: TextStyle(fontSize: 40.0),
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('go back'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Medicines',
+                  home: MyApp(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Medicines'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Medicines',
+                  home: Medicines(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Reminders'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Reminders',
+                  home: Reminders(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Prescriptions'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Prescriptions',
+                  home: Prescriptions(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Blood Pressure'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                runApp(MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Blood Pressure',
+                  home: BloodPressure(),
+                ));
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Contacts'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('House Help'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
