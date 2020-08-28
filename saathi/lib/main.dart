@@ -51,8 +51,104 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Saathi')),
-      body: Center(
-        child: PopupMenuButton<int>(
+      body: Wrap(
+         spacing: 20, // to apply margin in the main axis of the wrap
+  runSpacing: 20,
+         children: <Widget>[
+           
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: <Widget>[
+    Expanded(
+      child: TextFormField(
+                      decoration: new InputDecoration(
+                        labelText: "Enter BP systolic",
+                        fillColor: Colors.white,
+                        border: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(25.0),
+                          borderSide: new BorderSide(
+                          ),
+                        ),
+                        //fillColor: Colors.green
+                      ),
+                     
+                      keyboardType: TextInputType.emailAddress,
+                      style: new TextStyle(
+                        fontFamily: "Poppins",
+                      ),
+                    ),
+    ),
+    Spacer(),
+   
+    Expanded(child: TextFormField(
+                      decoration: new InputDecoration(
+                        labelText: "Enter BP diastolic",
+                        fillColor: Colors.white,
+                        border: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(25.0),
+                          borderSide: new BorderSide(
+                          ),
+                        ),
+                        //fillColor: Colors.green
+                      ),
+                     
+                      keyboardType: TextInputType.emailAddress,
+                      style: new TextStyle(
+                        fontFamily: "Poppins",
+                      ),
+                    ),    
+    ),    
+  ],
+),
+       
+             
+       Row(
+  children: <Widget>[
+    Expanded(
+      child: TextFormField(
+                      decoration: new InputDecoration(
+                        labelText: "Enter sugar before meal",
+                        fillColor: Colors.white,
+                        border: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(25.0),
+                          borderSide: new BorderSide(
+                          ),
+                        ),
+                        //fillColor: Colors.green
+                      ),
+                     
+                      keyboardType: TextInputType.emailAddress,
+                      style: new TextStyle(
+                        fontFamily: "Poppins",
+                      ),
+                    ),
+
+    ),
+    Spacer(),
+    Expanded(child: TextFormField(
+                      decoration: new InputDecoration(
+                        labelText: "Enter sugar after meal",
+                        fillColor: Colors.white,
+                        border: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(25.0),
+                          borderSide: new BorderSide(
+                          ),
+                        ),
+                        //fillColor: Colors.green
+                      ),
+                     
+                      keyboardType: TextInputType.emailAddress,
+                      style: new TextStyle(
+                        fontFamily: "Poppins",
+                      ),
+                    ),
+     
+    ),
+  ],
+),
+             
+           Center(
+       child: PopupMenuButton<int>(
           itemBuilder: (context) => [
             PopupMenuItem(
               value: 1,
@@ -67,12 +163,16 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text("Fire"),
             ),
             PopupMenuItem(
-              value: 3,
-              child: Text("Family 1"),
+              value: 4,
+              child: Text("Family"),
             ),
             PopupMenuItem(
-              value: 3,
-              child: Text("Family 2"),
+              value: 5,
+              child: Text("Family"),
+            ),
+            PopupMenuItem(
+              value: 6,
+              child: Text("Famliy"),
             ),
           ],
           onCanceled: () {
@@ -86,24 +186,31 @@ class _MyHomePageState extends State<MyHomePage> {
             else if (value == 3)
               number = '101';
             else if (value == 4)
-              number = '101';
+              number = 'XXX';
             else if (value == 5)
-              number = '101';
-            _service.call(number);
+              number = 'XXX';
+            else if (value == 6)
+              number = 'XXX';
           },
           child: CircleAvatar(
             backgroundColor: Colors.red,
-            radius: 85,
+            radius: 50,
             child: Text(
               'EMERGENCY',
               style: TextStyle(
-                  fontSize: 26,
+                  fontSize: 15,
                   fontWeight: FontWeight.bold,
                   color: Colors.black
               ),),
           ),
         ),
-      ),
+   
+),
+   
+           
+           
+           
+    ],  ),
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
