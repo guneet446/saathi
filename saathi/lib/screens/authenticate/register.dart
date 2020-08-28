@@ -117,40 +117,6 @@ class _RegisterState extends State<Register> {
                 },
               ),
 
-              SizedBox(height: 10),
-              TextFormField(
-                validator: (val) {
-                  return val.isEmpty
-                      ? 'Enter your family contact number'
-                      : null;
-                },
-                onChanged: (val) {
-                  setState(() => number_1 = val);
-                },
-              ),
-              SizedBox(height: 10),
-              TextFormField(
-                validator: (val) {
-                  return val.isEmpty
-                      ? 'Enter your family contact number'
-                      : null;
-                },
-                onChanged: (val) {
-                  setState(() => number_2 = val);
-                },
-              ),
-              SizedBox(height: 10),
-              TextFormField(
-                validator: (val) {
-                  return val.isEmpty
-                      ? 'Enter your family contact number'
-                      : null;
-                },
-                onChanged: (val) {
-                  setState(() => number_3 = val);
-                },
-              ),
-
               SizedBox(height: 40),
               RaisedButton(
                 child: Text('Register'),

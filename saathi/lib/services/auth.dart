@@ -32,7 +32,7 @@ class AuthService {
       FirebaseUser user = result.user;
 
       await DatabaseService(uid: user.uid).updateUserData(name, age, bloodGroup, emergencyContact1, emergencyContact2);
-      await DatabaseService(uid: user.uid).setPrescription(null);
+      //await DatabaseService(uid: user.uid).setPrescription(null);
 
       return _userFromFirebaseUser(user);
     } catch (e) {

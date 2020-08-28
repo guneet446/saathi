@@ -4,12 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
+import 'package:saathi/screens/addPrescription.dart';
 import 'package:saathi/screens/authenticate/authenticate.dart';
+import 'package:saathi/screens/home.dart';
 import 'package:saathi/services/auth.dart';
+import 'package:saathi/services/database.dart';
 import 'services/call_service.dart';
 import 'package:image_picker/image_picker.dart';
 import 'screens/wrapper.dart';
 import 'models/user.dart';
+import 'models/prescription.dart';
 
 GetIt locator = GetIt.I;
 
@@ -27,10 +31,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamProvider<User>.value(
       value: AuthService().user,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Wrapper(),
-      ),
+      /*child: StreamProvider<List<Prescription>>.value(
+        value: DatabaseService().prescription,*/
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Wrapper(),
+        ),
+      //),
     );
   }
 }
@@ -44,301 +51,111 @@ class _MyHomePageState extends State<MyHomePage> {
   final CallService _service = locator<CallService>();
   String number;
   DateTime _dateTime;
+  String bps = "";
+  String bpd = "";
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Saathi')),
-      body: Wrap(
-        spacing: 20, // to apply margin in the main axis of the wrap
-        runSpacing: 20,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Expanded(
-                child: TextFormField(
-                  decoration: new InputDecoration(
-                    labelText: "Enter BP systolic",
-                    fillColor: Colors.white,
-                    border: new OutlineInputBorder(
-                      borderRadius: new BorderRadius.circular(25.0),
-                      borderSide: new BorderSide(),
-                    ),
-                    //fillColor: Colors.green
-                  ),
-                  keyboardType: TextInputType.emailAddress,
-                  style: new TextStyle(
-                    fontFamily: "Poppins",
-                  ),
-                ),
-              ),
-              Spacer(),
-              Expanded(
-                child: TextFormField(
-                  decoration: new InputDecoration(
-                    labelText: "Enter BP diastolic",
-                    fillColor: Colors.white,
-                    border: new OutlineInputBorder(
-                      borderRadius: new BorderRadius.circular(25.0),
-                      borderSide: new BorderSide(),
-                    ),
-                    //fillColor: Colors.green
-                  ),
-                  keyboardType: TextInputType.emailAddress,
-                  style: new TextStyle(
-                    fontFamily: "Poppins",
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: TextFormField(
-                  decoration: new InputDecoration(
-                    labelText: "Enter sugar before meal",
-                    fillColor: Colors.white,
-                    border: new OutlineInputBorder(
-                      borderRadius: new BorderRadius.circular(25.0),
-                      borderSide: new BorderSide(),
-                    ),
-                    //fillColor: Colors.green
-                  ),
-                  keyboardType: TextInputType.emailAddress,
-                  style: new TextStyle(
-                    fontFamily: "Poppins",
-                  ),
-                ),
-              ),
-              Spacer(),
-              Expanded(
-                child: TextFormField(
-                  decoration: new InputDecoration(
-                    labelText: "Enter sugar after meal",
-                    fillColor: Colors.white,
-                    border: new OutlineInputBorder(
-                      borderRadius: new BorderRadius.circular(25.0),
-                      borderSide: new BorderSide(),
-                    ),
-                    //fillColor: Colors.green
-                  ),
-                  keyboardType: TextInputType.emailAddress,
-                  style: new TextStyle(
-                    fontFamily: "Poppins",
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: TextFormField(
-                  decoration: new InputDecoration(
-                    labelText: "To-Do List",
-                    fillColor: Colors.white,
-                    border: new OutlineInputBorder(
-                      borderRadius: new BorderRadius.circular(25.0),
-                      borderSide: new BorderSide(),
-                    ),
-                    //fillColor: Colors.green
-                  ),
-
-                  keyboardType: TextInputType.multiline,
-                  minLines: 5, //Normal textInputField will be displayed
-                  maxLines: 5,
-                  style: new TextStyle(
-                    fontFamily: "Poppins",
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(_dateTime == null
-                        ? 'Nothing has been picked yet'
-                        : _dateTime.toString()),
-                    RaisedButton(
-                      child: Text('Pick a date'),
-                      onPressed: () {
-                        showDatePicker(
-                                context: context,
-                                initialDate: _dateTime == null
-                                    ? DateTime.now()
-                                    : _dateTime,
-                                firstDate: DateTime(2001),
-                                lastDate: DateTime(2021))
-                            .then((date) {
-                          setState(() {
-                            _dateTime = date;
-                          });
-                        });
-                      },
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
-          Center(
-            child: PopupMenuButton<int>(
-              itemBuilder: (context) => [
-                PopupMenuItem(
-                  value: 1,
-                  child: Text("Ambulance"),
-                ),
-                PopupMenuItem(
-                  value: 2,
-                  child: Text("Police"),
-                ),
-                PopupMenuItem(
-                  value: 3,
-                  child: Text("Fire"),
-                ),
-                PopupMenuItem(
-                  value: 4,
-                  child: Text("Family 1"),
-                ),
-                PopupMenuItem(
-                  value: 5,
-                  child: Text("Family 2"),
-                ),
-              ],
-              onCanceled: () {
-                print("You have canceled the call");
-              },
-              onSelected: (value) {
-                if (value == 1)
-                  number = '102';
-                else if (value == 2)
-                  number = '100';
-                else if (value == 3)
-                  number = '101';
-                else if (value == 4)
-                  number = 'XXX';
-                else if (value == 5)
-                  number = 'XXX';
-                _service.call(number);
-              },
-              child: CircleAvatar(
-                backgroundColor: Colors.red,
-                radius: 50,
-                child: Text(
-                  'EMERGENCY',
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //launch for  direct calling
-        },
-        child: Icon(Icons.call),
-        backgroundColor: Colors.green,
-      ),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            Container(
-              height: 100.0,
-              child: DrawerHeader(
-                child: Text(
-                  'At your service',
-                  style: TextStyle(fontSize: 40.0),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text('Medicines'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Medicines()));
-              },
-            ),
-            ListTile(
-              title: Text('Reminders'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Reminders()));
-              },
-            ),
-            ListTile(
-              title: Text('Prescriptions'),
-              onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Prescriptions()));
-              },
-            ),
-            ListTile(
-              title: Text('Blood Pressure'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => BloodPressure()));
-              },
-            ),
-            ListTile(
-              title: Text('Sugar'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Sugar()));
-              },
-            ),
-            ListTile(
-              title: Text('Contacts'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('House Help'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('My Account'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => MyAccount()));
-              },
-            ),
-          ],
+      return Scaffold(
+        appBar: AppBar(title: Text('Saathi')),
+        body: Home(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            //launch for  direct calling
+          },
+          child: Icon(Icons.call),
+          backgroundColor: Colors.green,
         ),
-      ),
+        drawer: Drawer(
+          // Add a ListView to the drawer. This ensures the user can scroll
+          // through the options in the drawer if there isn't enough vertical
+          // space to fit everything.
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              Container(
+                height: 100.0,
+                child: DrawerHeader(
+                  child: Text(
+                    'At your service',
+                    style: TextStyle(fontSize: 40.0),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                  ),
+                ),
+              ),
+              ListTile(
+                title: Text('Medicines'),
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => Medicines()));
+                },
+              ),
+              ListTile(
+                title: Text('Reminders'),
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => Reminders()));
+                },
+              ),
+              ListTile(
+                title: Text('Prescriptions'),
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Prescriptions()));
+                },
+              ),
+              ListTile(
+                title: Text('Blood Pressure'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => BloodPressure()));
+                },
+              ),
+              ListTile(
+                title: Text('Sugar'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => Sugar()));
+                },
+              ),
+              ListTile(
+                title: Text('Contacts'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('House Help'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: Text('My Account'),
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => MyAccount()));
+                },
+              ),
+            ],
+          ),
+        ),
     );
   }
 }
@@ -471,129 +288,13 @@ class Prescriptions extends StatefulWidget {
 }
 
 class _PrescriptionsState extends State<Prescriptions> {
-  File _image;
 
   @override
   Widget build(BuildContext context) {
-    print('Prescription');
+
     return Scaffold(
-      appBar: AppBar(title: Text('Prescriptions')),
-      body: Column(
-        children: <Widget>[
-          RaisedButton.icon(
-            label: _image == null ? Text('Add a new prescription') : Text('Prescription added'),
-            icon: Icon(Icons.add_a_photo),
-            onPressed: _getImage,
-          ),
-          Container(
-              child: Image.file(
-                _image,
-              height: 200,
-              width: 200,
-              ),
-          ),
-        ],
-      ),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            Container(
-              height: 100.0,
-              child: DrawerHeader(
-                child: Text(
-                  'At your service',
-                  style: TextStyle(fontSize: 40.0),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text('Home'),
-              onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => MyHomePage()));
-              },
-            ),
-            ListTile(
-              title: Text('Medicines'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Medicines()));
-              },
-            ),
-            ListTile(
-              title: Text('Reminders'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Reminders()));
-              },
-            ),
-            ListTile(
-              title: Text('Blood Pressure'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => BloodPressure()));
-              },
-            ),
-            ListTile(
-              title: Text('Sugar'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Sugar()));
-              },
-            ),
-            ListTile(
-              title: Text('Contacts'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('House Help'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('My Account'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => MyAccount()));
-              },
-            ),
-          ],
-        ),
-      ),
+      body: AddPrescription(),
     );
-  }
-  Future _getImage() async{
-    //PickedFile image = await _picker.getImage(source: ImageSource.gallery);
-    File image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      _image = image;
-      print('_image: $_image');
-    });
   }
 }
 
