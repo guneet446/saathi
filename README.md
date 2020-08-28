@@ -1,3 +1,3 @@
 # Saathi
 
-An app to assist senior citizens
+An application to assist senior citizens in their daily life.
