@@ -43,6 +43,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final CallService _service = locator<CallService>();
   String number;
+  DateTime _dateTime;
 
   @override
   Widget build(BuildContext context) {
@@ -151,6 +152,37 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: new TextStyle(
                     fontFamily: "Poppins",
                   ),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(_dateTime == null
+                        ? 'Nothing has been picked yet'
+                        : _dateTime.toString()),
+                    RaisedButton(
+                      child: Text('Pick a date'),
+                      onPressed: () {
+                        showDatePicker(
+                                context: context,
+                                initialDate: _dateTime == null
+                                    ? DateTime.now()
+                                    : _dateTime,
+                                firstDate: DateTime(2001),
+                                lastDate: DateTime(2021))
+                            .then((date) {
+                          setState(() {
+                            _dateTime = date;
+                          });
+                        });
+                      },
+                    )
+                  ],
                 ),
               ),
             ],
