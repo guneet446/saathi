@@ -266,12 +266,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Medicines',
-                  home: BloodPressure(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => BloodPressure()));
               },
             ),
             ListTile(
@@ -280,12 +276,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Sugar',
-                  home: Sugar(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Sugar()));
               },
             ),
             ListTile(
@@ -384,12 +376,8 @@ class Medicines extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Blood Pressure',
-                  home: BloodPressure(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => BloodPressure()));
               },
             ),
             ListTile(
@@ -398,12 +386,8 @@ class Medicines extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Sugar',
-                  home: Sugar(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Sugar()));
               },
             ),
             ListTile(
@@ -521,12 +505,8 @@ class _PrescriptionsState extends State<Prescriptions> {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Blood Pressure',
-                  home: BloodPressure(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => BloodPressure()));
               },
             ),
             ListTile(
@@ -535,12 +515,8 @@ class _PrescriptionsState extends State<Prescriptions> {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Sugar',
-                  home: Sugar(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Sugar()));
               },
             ),
             ListTile(
@@ -649,12 +625,8 @@ class Reminders extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Blood Pressure',
-                  home: BloodPressure(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => BloodPressure()));
               },
             ),
             ListTile(
@@ -663,12 +635,8 @@ class Reminders extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Sugar',
-                  home: Sugar(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Sugar()));
               },
             ),
             ListTile(
@@ -755,7 +723,7 @@ class BloodPressure extends StatelessWidget {
           ),
           Card(
             child: ListTile(
-              title: Text('Systolic: 126     Diastolic: 78 '),
+              title: Text('Systolic: 126     Diastolic: 74 '),
               subtitle: Text('Date: 26/08/20'),
             ),
           ),
@@ -801,12 +769,8 @@ class BloodPressure extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Medicines',
-                  home: Medicines(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Medicines()));
               },
             ),
             ListTile(
@@ -815,12 +779,8 @@ class BloodPressure extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Reminders',
-                  home: Reminders(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Reminders()));
               },
             ),
             ListTile(
@@ -829,12 +789,8 @@ class BloodPressure extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Prescriptions',
-                  home: Prescriptions(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Prescriptions()));
               },
             ),
             ListTile(
@@ -843,12 +799,8 @@ class BloodPressure extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Sugar',
-                  home: Sugar(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Sugar()));
               },
             ),
             ListTile(
@@ -961,12 +913,8 @@ class Sugar extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Medicines',
-                  home: Medicines(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Medicines()));
               },
             ),
             ListTile(
@@ -975,12 +923,8 @@ class Sugar extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Reminders',
-                  home: Reminders(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Reminders()));
               },
             ),
             ListTile(
@@ -989,12 +933,8 @@ class Sugar extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Prescriptions',
-                  home: Prescriptions(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Prescriptions()));
               },
             ),
             ListTile(
@@ -1003,12 +943,8 @@ class Sugar extends StatelessWidget {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Blood Pressure',
-                  home: BloodPressure(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => BloodPressure()));
               },
             ),
             ListTile(
@@ -1105,6 +1041,20 @@ class MyAccount extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => Prescriptions()));
+              },
+            ),
+            ListTile(
+              title: Text('Blood Pressure'),
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => BloodPressure()));
+              },
+            ),
+            ListTile(
+              title: Text('Sugar'),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Sugar()));
               },
             ),
             ListTile(
