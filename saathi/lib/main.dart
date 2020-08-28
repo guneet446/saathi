@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get_it/get_it.dart';
@@ -41,6 +43,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final CallService _service = locator<CallService>();
   String number;
+  DateTime _dateTime;
 
   @override
   Widget build(BuildContext context) {
@@ -153,6 +156,37 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(_dateTime == null
+                        ? 'Nothing has been picked yet'
+                        : _dateTime.toString()),
+                    RaisedButton(
+                      child: Text('Pick a date'),
+                      onPressed: () {
+                        showDatePicker(
+                                context: context,
+                                initialDate: _dateTime == null
+                                    ? DateTime.now()
+                                    : _dateTime,
+                                firstDate: DateTime(2001),
+                                lastDate: DateTime(2021))
+                            .then((date) {
+                          setState(() {
+                            _dateTime = date;
+                          });
+                        });
+                      },
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
           Center(
             child: PopupMenuButton<int>(
               itemBuilder: (context) => [
@@ -170,15 +204,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 PopupMenuItem(
                   value: 4,
-                  child: Text("Family"),
+                  child: Text("Family 1"),
                 ),
                 PopupMenuItem(
                   value: 5,
-                  child: Text("Family"),
-                ),
-                PopupMenuItem(
-                  value: 6,
-                  child: Text("Famliy"),
+                  child: Text("Family 2"),
                 ),
               ],
               onCanceled: () {
@@ -195,7 +225,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   number = 'XXX';
                 else if (value == 5)
                   number = 'XXX';
-                else if (value == 6) number = 'XXX';
+                _service.call(number);
               },
               child: CircleAvatar(
                 backgroundColor: Colors.red,
@@ -441,22 +471,28 @@ class Prescriptions extends StatefulWidget {
 }
 
 class _PrescriptionsState extends State<Prescriptions> {
-  final _picker = ImagePicker();
-  PickedFile _image;
+  File _image;
 
   @override
   Widget build(BuildContext context) {
     print('Prescription');
     return Scaffold(
       appBar: AppBar(title: Text('Prescriptions')),
-      body: Center(
-        child: RaisedButton.icon(
-          label: _image == null
-              ? Text('Add a new prescription')
-              : Text('Prescription added'),
-          icon: Icon(Icons.add_a_photo),
-          onPressed: _getImage,
-        ),
+      body: Column(
+        children: <Widget>[
+          RaisedButton.icon(
+            label: _image == null ? Text('Add a new prescription') : Text('Prescription added'),
+            icon: Icon(Icons.add_a_photo),
+            onPressed: _getImage,
+          ),
+          Container(
+              child: Image.file(
+                _image,
+              height: 200,
+              width: 200,
+              ),
+          ),
+        ],
       ),
       drawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
@@ -550,9 +586,9 @@ class _PrescriptionsState extends State<Prescriptions> {
       ),
     );
   }
-
-  Future _getImage() async {
-    PickedFile image = await _picker.getImage(source: ImageSource.gallery);
+  Future _getImage() async{
+    //PickedFile image = await _picker.getImage(source: ImageSource.gallery);
+    File image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
     setState(() {
       _image = image;

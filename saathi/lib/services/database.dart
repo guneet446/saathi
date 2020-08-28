@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:saathi/main.dart';
 
 class DatabaseService {
   final String uid;
@@ -18,19 +21,16 @@ class DatabaseService {
     });
   }
 
-  Future<void> setPrescription(PickedFile image) async {
+  Future<void> setPrescription(File image) async {
     return await prescriptionCollection.document(uid).setData({
       'image': image,
     });
   }
 
-  Future<void> addPrescription(PickedFile image) async {
+  Future<void> addPrescription(File image) async {
     return await prescriptionCollection.document(uid).updateData({
       'image': image,
     });
   }
 
-  Stream<QuerySnapshot> get prescriptions {
-    return prescriptionCollection.snapshots();
-  }
 }
