@@ -9,7 +9,6 @@ import 'package:image_picker/image_picker.dart';
 import 'screens/wrapper.dart';
 import 'models/user.dart';
 
-
 GetIt locator = GetIt.I;
 
 void setupLocator() {
@@ -21,9 +20,7 @@ void main() {
   return runApp(MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return StreamProvider<User>.value(
@@ -37,13 +34,11 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   final CallService _service = locator<CallService>();
   String number;
 
@@ -52,166 +47,171 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(title: Text('Saathi')),
       body: Wrap(
-         spacing: 20, // to apply margin in the main axis of the wrap
-  runSpacing: 20,
-         children: <Widget>[
-           
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  children: <Widget>[
-    Expanded(
-      child: TextFormField(
-                      decoration: new InputDecoration(
-                        labelText: "Enter BP systolic",
-                        fillColor: Colors.white,
-                        border: new OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(25.0),
-                          borderSide: new BorderSide(
-                          ),
-                        ),
-                        //fillColor: Colors.green
-                      ),
-                     
-                      keyboardType: TextInputType.emailAddress,
-                      style: new TextStyle(
-                        fontFamily: "Poppins",
-                      ),
+        spacing: 20, // to apply margin in the main axis of the wrap
+        runSpacing: 20,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Expanded(
+                child: TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: "Enter BP systolic",
+                    fillColor: Colors.white,
+                    border: new OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(25.0),
+                      borderSide: new BorderSide(),
                     ),
-    ),
-    Spacer(),
-   
-    Expanded(child: TextFormField(
-                      decoration: new InputDecoration(
-                        labelText: "Enter BP diastolic",
-                        fillColor: Colors.white,
-                        border: new OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(25.0),
-                          borderSide: new BorderSide(
-                          ),
-                        ),
-                        //fillColor: Colors.green
-                      ),
-                     
-                      keyboardType: TextInputType.emailAddress,
-                      style: new TextStyle(
-                        fontFamily: "Poppins",
-                      ),
-                    ),    
-    ),    
-  ],
-),
-       
-             
-       Row(
-  children: <Widget>[
-    Expanded(
-      child: TextFormField(
-                      decoration: new InputDecoration(
-                        labelText: "Enter sugar before meal",
-                        fillColor: Colors.white,
-                        border: new OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(25.0),
-                          borderSide: new BorderSide(
-                          ),
-                        ),
-                        //fillColor: Colors.green
-                      ),
-                     
-                      keyboardType: TextInputType.emailAddress,
-                      style: new TextStyle(
-                        fontFamily: "Poppins",
-                      ),
+                    //fillColor: Colors.green
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                  style: new TextStyle(
+                    fontFamily: "Poppins",
+                  ),
+                ),
+              ),
+              Spacer(),
+              Expanded(
+                child: TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: "Enter BP diastolic",
+                    fillColor: Colors.white,
+                    border: new OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(25.0),
+                      borderSide: new BorderSide(),
                     ),
-
-    ),
-    Spacer(),
-    Expanded(child: TextFormField(
-                      decoration: new InputDecoration(
-                        labelText: "Enter sugar after meal",
-                        fillColor: Colors.white,
-                        border: new OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(25.0),
-                          borderSide: new BorderSide(
-                          ),
-                        ),
-                        //fillColor: Colors.green
-                      ),
-                     
-                      keyboardType: TextInputType.emailAddress,
-                      style: new TextStyle(
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-     
-    ),
-  ],
-),
-             
-           Center(
-       child: PopupMenuButton<int>(
-          itemBuilder: (context) => [
-            PopupMenuItem(
-              value: 1,
-              child: Text("Ambulance"),
-            ),
-            PopupMenuItem(
-              value: 2,
-              child: Text("Police"),
-            ),
-            PopupMenuItem(
-              value: 3,
-              child: Text("Fire"),
-            ),
-            PopupMenuItem(
-              value: 4,
-              child: Text("Family"),
-            ),
-            PopupMenuItem(
-              value: 5,
-              child: Text("Family"),
-            ),
-            PopupMenuItem(
-              value: 6,
-              child: Text("Famliy"),
-            ),
-          ],
-          onCanceled: () {
-            print("You have canceled the call");
-          },
-          onSelected: (value) {
-            if (value == 1)
-              number = '102';
-            else if (value == 2)
-              number = '100';
-            else if (value == 3)
-              number = '101';
-            else if (value == 4)
-              number = 'XXX';
-            else if (value == 5)
-              number = 'XXX';
-            else if (value == 6)
-              number = 'XXX';
-          },
-          child: CircleAvatar(
-            backgroundColor: Colors.red,
-            radius: 50,
-            child: Text(
-              'EMERGENCY',
-              style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black
-              ),),
+                    //fillColor: Colors.green
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                  style: new TextStyle(
+                    fontFamily: "Poppins",
+                  ),
+                ),
+              ),
+            ],
           ),
-        ),
-   
-),
-   
-           
-           
-           
-    ],  ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: "Enter sugar before meal",
+                    fillColor: Colors.white,
+                    border: new OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(25.0),
+                      borderSide: new BorderSide(),
+                    ),
+                    //fillColor: Colors.green
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                  style: new TextStyle(
+                    fontFamily: "Poppins",
+                  ),
+                ),
+              ),
+              Spacer(),
+              Expanded(
+                child: TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: "Enter sugar after meal",
+                    fillColor: Colors.white,
+                    border: new OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(25.0),
+                      borderSide: new BorderSide(),
+                    ),
+                    //fillColor: Colors.green
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                  style: new TextStyle(
+                    fontFamily: "Poppins",
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: "To-Do List",
+                    fillColor: Colors.white,
+                    border: new OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(25.0),
+                      borderSide: new BorderSide(),
+                    ),
+                    //fillColor: Colors.green
+                  ),
 
+                  keyboardType: TextInputType.multiline,
+                  minLines: 5, //Normal textInputField will be displayed
+                  maxLines: 5,
+                  style: new TextStyle(
+                    fontFamily: "Poppins",
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Center(
+            child: PopupMenuButton<int>(
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  value: 1,
+                  child: Text("Ambulance"),
+                ),
+                PopupMenuItem(
+                  value: 2,
+                  child: Text("Police"),
+                ),
+                PopupMenuItem(
+                  value: 3,
+                  child: Text("Fire"),
+                ),
+                PopupMenuItem(
+                  value: 4,
+                  child: Text("Family"),
+                ),
+                PopupMenuItem(
+                  value: 5,
+                  child: Text("Family"),
+                ),
+                PopupMenuItem(
+                  value: 6,
+                  child: Text("Famliy"),
+                ),
+              ],
+              onCanceled: () {
+                print("You have canceled the call");
+              },
+              onSelected: (value) {
+                if (value == 1)
+                  number = '102';
+                else if (value == 2)
+                  number = '100';
+                else if (value == 3)
+                  number = '101';
+                else if (value == 4)
+                  number = 'XXX';
+                else if (value == 5)
+                  number = 'XXX';
+                else if (value == 6) number = 'XXX';
+              },
+              child: CircleAvatar(
+                backgroundColor: Colors.red,
+                radius: 50,
+                child: Text(
+                  'EMERGENCY',
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           //launch for  direct calling
@@ -219,8 +219,6 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Icon(Icons.call),
         backgroundColor: Colors.green,
       ),
-
-
       drawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
         // through the options in the drawer if there isn't enough vertical
@@ -244,19 +242,22 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: Text('Medicines'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Medicines()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Medicines()));
               },
             ),
             ListTile(
               title: Text('Reminders'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reminders()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Reminders()));
               },
             ),
             ListTile(
               title: Text('Prescriptions'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Prescriptions()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Prescriptions()));
               },
             ),
             ListTile(
@@ -281,7 +282,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: Text('My Account'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyAccount()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => MyAccount()));
               },
             ),
           ],
@@ -290,7 +292,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
 
 class Medicines extends StatelessWidget {
   @override
@@ -331,19 +332,22 @@ class Medicines extends StatelessWidget {
             ListTile(
               title: Text('Home'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyHomePage()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => MyHomePage()));
               },
             ),
             ListTile(
               title: Text('Reminders'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reminders()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Reminders()));
               },
             ),
             ListTile(
               title: Text('Prescriptions'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Prescriptions()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Prescriptions()));
               },
             ),
             ListTile(
@@ -368,7 +372,8 @@ class Medicines extends StatelessWidget {
             ListTile(
               title: Text('My Account'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyAccount()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => MyAccount()));
               },
             ),
           ],
@@ -377,6 +382,7 @@ class Medicines extends StatelessWidget {
     );
   }
 }
+
 class NewMedicine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -384,9 +390,7 @@ class NewMedicine extends StatelessWidget {
       appBar: AppBar(
         title: Text("New medicine"),
       ),
-      body: Center(
-          child:Text('hello')
-      ),
+      body: Center(child: Text('hello')),
     );
   }
 }
@@ -407,8 +411,9 @@ class _PrescriptionsState extends State<Prescriptions> {
       appBar: AppBar(title: Text('Prescriptions')),
       body: Center(
         child: RaisedButton.icon(
-          label: _image == null ? Text('Add a new prescription') : Text(
-              'Prescription added'),
+          label: _image == null
+              ? Text('Add a new prescription')
+              : Text('Prescription added'),
           icon: Icon(Icons.add_a_photo),
           onPressed: _getImage,
         ),
@@ -436,19 +441,22 @@ class _PrescriptionsState extends State<Prescriptions> {
             ListTile(
               title: Text('Home'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyHomePage()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => MyHomePage()));
               },
             ),
             ListTile(
               title: Text('Medicines'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Medicines()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Medicines()));
               },
             ),
             ListTile(
               title: Text('Reminders'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reminders()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Reminders()));
               },
             ),
             ListTile(
@@ -473,7 +481,8 @@ class _PrescriptionsState extends State<Prescriptions> {
             ListTile(
               title: Text('My Account'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyAccount()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => MyAccount()));
               },
             ),
           ],
@@ -481,7 +490,8 @@ class _PrescriptionsState extends State<Prescriptions> {
       ),
     );
   }
-  Future _getImage() async{
+
+  Future _getImage() async {
     PickedFile image = await _picker.getImage(source: ImageSource.gallery);
 
     setState(() {
@@ -531,19 +541,22 @@ class Reminders extends StatelessWidget {
             ListTile(
               title: Text('Home'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyHomePage()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => MyHomePage()));
               },
             ),
             ListTile(
               title: Text('Medicines'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Medicines()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Medicines()));
               },
             ),
             ListTile(
               title: Text('Prescriptions'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Prescriptions()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Prescriptions()));
               },
             ),
             ListTile(
@@ -568,7 +581,8 @@ class Reminders extends StatelessWidget {
             ListTile(
               title: Text('My Account'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyAccount()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => MyAccount()));
               },
             ),
           ],
@@ -577,6 +591,7 @@ class Reminders extends StatelessWidget {
     );
   }
 }
+
 class NewReminder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -585,9 +600,7 @@ class NewReminder extends StatelessWidget {
       appBar: AppBar(
         title: Text("New reminder"),
       ),
-      body: Center(
-          child:Text('heyyy')
-      ),
+      body: Center(child: Text('heyyy')),
     );
   }
 }
@@ -605,7 +618,7 @@ class MyAccount extends StatelessWidget {
       body: Center(
         child: RaisedButton(
           child: Text('Sign Out'),
-          onPressed: () async{
+          onPressed: () async {
             await _auth.signOut();
             Navigator.pushReplacement(
               context,
@@ -637,25 +650,29 @@ class MyAccount extends StatelessWidget {
             ListTile(
               title: Text('Home'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyHomePage()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => MyHomePage()));
               },
             ),
             ListTile(
               title: Text('Medicines'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Medicines()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Medicines()));
               },
             ),
             ListTile(
               title: Text('Reminders'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reminders()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Reminders()));
               },
             ),
             ListTile(
               title: Text('Prescriptions'),
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Prescriptions()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Prescriptions()));
               },
             ),
             ListTile(
@@ -683,4 +700,3 @@ class MyAccount extends StatelessWidget {
     );
   }
 }
-
