@@ -14,6 +14,7 @@ class _HomeState extends State<Home> {
   final CallService _service = locator<CallService>();
   String number;
   DateTime _dateTime;
+  String dateStr = "";
   String bps = "";
   String bpd = "";
   String sugarb = "";
@@ -42,7 +43,7 @@ class _HomeState extends State<Home> {
                 ),
                 onChanged: (val) {
                   setState(() => bps = val);
-                  inputBP();
+                  inputBPandSugar();
                 },
                 keyboardType: TextInputType.emailAddress,
                 style: new TextStyle(
@@ -64,7 +65,7 @@ class _HomeState extends State<Home> {
                 ),
                 onChanged: (val) {
                   setState(() => bpd = val);
-                  inputBP();
+                  inputBPandSugar();
                 },
                 keyboardType: TextInputType.emailAddress,
                 style: new TextStyle(
@@ -87,6 +88,10 @@ class _HomeState extends State<Home> {
                   ),
                   //fillColor: Colors.green
                 ),
+                onChanged: (val) {
+                  setState(() => sugarb = val);
+                  inputBPandSugar();
+                },
                 keyboardType: TextInputType.emailAddress,
                 style: new TextStyle(
                   fontFamily: "Poppins",
@@ -105,6 +110,10 @@ class _HomeState extends State<Home> {
                   ),
                   //fillColor: Colors.green
                 ),
+                onChanged: (val) {
+                  setState(() => sugara = val);
+                  inputBPandSugar();
+                },
                 keyboardType: TextInputType.emailAddress,
                 style: new TextStyle(
                   fontFamily: "Poppins",
@@ -144,8 +153,11 @@ class _HomeState extends State<Home> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(_dateTime == null
-                      ? 'Nothing has been picked yet'
-                      : _dateTime.toString()),
+                      ? 'Date has not been picked yet'
+                      : dateStr,
+                  style: TextStyle(
+                    fontSize: 18
+                  ),),
                   RaisedButton(
                     child: Text('Pick a date'),
                     onPressed: () {
@@ -159,7 +171,9 @@ class _HomeState extends State<Home> {
                           .then((date) {
                         setState(() {
                           _dateTime = date;
-                        });
+                          dateStr = "${_dateTime.toLocal()}".split(' ')[0];
+                          inputBPandSugar();
+                          },);
                       });
                     },
                   )
@@ -226,15 +240,9 @@ class _HomeState extends State<Home> {
   }
   final FirebaseAuth auth = FirebaseAuth.instance;
 
-  void inputBP() async {
+  void inputBPandSugar() async {
     final FirebaseUser user = await auth.currentUser();
     final uid = user.uid;
-    await DatabaseService(uid: uid).addBp(bps, bpd);
+    await DatabaseService(uid: uid).addBpandSugar(bps, bpd, sugarb, sugara, dateStr);
   }
-
-  /*void inputSugar() async {
-    final FirebaseUser user = await auth.currentUser();
-    final uid = user.uid;
-    await DatabaseService(uid: uid).addBp(sugarb, sugara);
-  }*/
 }

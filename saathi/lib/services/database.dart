@@ -34,27 +34,14 @@ class DatabaseService {
     merge: true);
   }
 
-  Future<void> addBp(String bps, String bpd) async {
+  Future<void> addBpandSugar(String bps, String bpd, String sugarb, String sugara, String dateStr) async {
     return await bpCollection.document(uid).setData({
       'bps': bps,
       'bpd': bpd,
+      'sugarb' : sugarb,
+      'sugara' : sugara,
+      'date' : dateStr,
     },
     merge: true);
   }
-
-  /*File image;
-  List<Prescription> _prescriptionListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.documents.map((doc){
-      //print(doc.data);
-      return Prescription(
-          image: doc.data[image] ?? null,
-      );
-    }).toList();
-  }
-
-  Stream<List<Prescription>> get prescription {
-    return prescriptionCollection.snapshots()
-        .map(_prescriptionListFromSnapshot);
-  }*/
-
 }

@@ -19,14 +19,7 @@ class _AddPrescriptionState extends State<AddPrescription> {
   @override
   Widget build(BuildContext context) {
 
-    /*final prescriptions = Provider.of<List<Prescriptions>>(context);
-    prescriptions.forEach((prescription) {
-      print('prescription: $prescription');
-    });*/
-
-    return Scaffold(
-      appBar: AppBar(title: Text('Prescriptions')),
-      body: Column(
+      return Column(
         children: <Widget>[
           RaisedButton.icon(
             label: _image == null ? Text('Add a new prescription') : Text(
@@ -42,98 +35,7 @@ class _AddPrescriptionState extends State<AddPrescription> {
             ),
           ),
         ],
-      ),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            Container(
-              height: 100.0,
-              child: DrawerHeader(
-                child: Text(
-                  'At your service',
-                  style: TextStyle(fontSize: 40.0),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text('Home'),
-              onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => MyHomePage()));
-              },
-            ),
-            ListTile(
-              title: Text('Medicines'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => MyMedicineReminder()));
-              },
-            ),
-            ListTile(
-              title: Text('Reminders'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Reminders()));
-              },
-            ),
-            ListTile(
-              title: Text('Blood Pressure'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => BloodPressure()));
-              },
-            ),
-            ListTile(
-              title: Text('Sugar'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Sugar()));
-              },
-            ),
-            ListTile(
-              title: Text('Contacts'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('House Help'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('My Account'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => MyAccount()));
-              },
-            ),
-          ],
-        ),
-      ),
-    );
+      );
   }
 
   final FirebaseAuth auth = FirebaseAuth.instance;

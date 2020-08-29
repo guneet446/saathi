@@ -66,19 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
       return Scaffold(
         appBar: AppBar(title: Text('Saathi')),
         body: Home(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            //launch for  direct calling
-          },
-          child: Icon(Icons.call),
-          backgroundColor: Colors.green,
-        ),
         drawer: Drawer(
-          // Add a ListView to the drawer. This ensures the user can scroll
-          // through the options in the drawer if there isn't enough vertical
-          // space to fit everything.
           child: ListView(
-            // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: <Widget>[
               Container(
@@ -94,14 +83,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               ListTile(
-                title: Text('Medicines'),
+                title: Text('Reminder'),
                 onTap: () {
                   Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => MyMedicineReminder()));
+                      .push(MaterialPageRoute(builder: (context) => NewReminder()));
                 },
               ),
               ListTile(
-                title: Text('Reminders'),
+                title: Text('Medicines'),
                 onTap: () {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) => Reminders()));
@@ -117,9 +106,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ListTile(
                 title: Text('Blood Pressure'),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => BloodPressure()));
                 },
@@ -127,30 +113,15 @@ class _MyHomePageState extends State<MyHomePage> {
               ListTile(
                 title: Text('Sugar'),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) => Sugar()));
                 },
               ),
               ListTile(
-                title: Text('Contacts'),
+                title: Text('My Account'),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: Text('House Help'),
-                onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.pop(context);
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => MyAccount()));
                 },
               ),
             ],
@@ -170,31 +141,11 @@ class _PrescriptionsState extends State<Prescriptions> {
   @override
   Widget build(BuildContext context) {
     print('Prescription');
-    return AddPrescription();
-  }
-}
-
-class Reminders extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    print('Reminders');
     return Scaffold(
-      appBar: AppBar(title: Text('Mediminder')),
-      body: Center(
-        child: RaisedButton(
-          child: Text('Add a new Mediminder'),
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => MyMedicineReminder()));
-          },
-        ),
-      ),
+      appBar: AppBar(title: Text('Prescriptions')),
+      body: AddPrescription(),
       drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
         child: ListView(
-          // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: <Widget>[
             Container(
@@ -217,10 +168,90 @@ class Reminders extends StatelessWidget {
               },
             ),
             ListTile(
+              title: Text('Reminder'),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => NewReminder()));
+              },
+            ),
+            ListTile(
               title: Text('Medicines'),
               onTap: () {
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => MyMedicineReminder()));
+                    .push(MaterialPageRoute(builder: (context) => Reminders()));
+              },
+            ),
+            ListTile(
+              title: Text('Blood Pressure'),
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => BloodPressure()));
+              },
+            ),
+            ListTile(
+              title: Text('Sugar'),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Sugar()));
+              },
+            ),
+            ListTile(
+              title: Text('My Account'),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => MyAccount()));
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Reminders extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    print('Reminders');
+    return Scaffold(
+      appBar: AppBar(title: Text('Mediminder')),
+      body: Center(
+        child: RaisedButton(
+          child: Text('Add a new Mediminder'),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => MyMedicineReminder()));
+          },
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            Container(
+              height: 100.0,
+              child: DrawerHeader(
+                child: Text(
+                  'At your service',
+                  style: TextStyle(fontSize: 40.0),
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('Home'),
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => MyHomePage()));
+              },
+            ),
+            ListTile(
+              title: Text('Reminder'),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => NewReminder()));
               },
             ),
             ListTile(
@@ -233,9 +264,6 @@ class Reminders extends StatelessWidget {
             ListTile(
               title: Text('Blood Pressure'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => BloodPressure()));
               },
@@ -243,30 +271,8 @@ class Reminders extends StatelessWidget {
             ListTile(
               title: Text('Sugar'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) => Sugar()));
-              },
-            ),
-            ListTile(
-              title: Text('Contacts'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('House Help'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
               },
             ),
             ListTile(
@@ -292,6 +298,74 @@ class NewReminder extends StatelessWidget {
         title: Text("New reminder"),
       ),
       body: Center(child: Text('heyyy')),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            Container(
+              height: 100.0,
+              child: DrawerHeader(
+                child: Text(
+                  'At your service',
+                  style: TextStyle(fontSize: 40.0),
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('Home'),
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => MyHomePage()));
+              },
+            ),
+            ListTile(
+              title: Text('Reminder'),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => NewReminder()));
+              },
+            ),
+            ListTile(
+              title: Text('Medicines'),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Reminders()));
+              },
+            ),
+            ListTile(
+              title: Text('Prescriptions'),
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Prescriptions()));
+              },
+            ),
+            ListTile(
+              title: Text('Blood Pressure'),
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => BloodPressure()));
+              },
+            ),
+            ListTile(
+              title: Text('Sugar'),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Sugar()));
+              },
+            ),
+            ListTile(
+              title: Text('My Account'),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => MyAccount()));
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -435,18 +509,14 @@ class BloodPressure extends StatelessWidget {
         ],
       ),
       drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
         child: ListView(
-          // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: <Widget>[
             Container(
               height: 100.0,
               child: DrawerHeader(
                 child: Text(
-                  'At your sevice',
+                  'At your service',
                   style: TextStyle(fontSize: 40.0),
                 ),
                 decoration: BoxDecoration(
@@ -455,35 +525,22 @@ class BloodPressure extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('go back'),
+              title: Text('Home'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Medicines',
-                  home: MyApp(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => MyHomePage()));
+              },
+            ),
+            ListTile(
+              title: Text('Reminder'),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => NewReminder()));
               },
             ),
             ListTile(
               title: Text('Medicines'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => MyMedicineReminder()));
-              },
-            ),
-            ListTile(
-              title: Text('Reminders'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) => Reminders()));
               },
@@ -491,9 +548,6 @@ class BloodPressure extends StatelessWidget {
             ListTile(
               title: Text('Prescriptions'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => Prescriptions()));
               },
@@ -501,30 +555,15 @@ class BloodPressure extends StatelessWidget {
             ListTile(
               title: Text('Sugar'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) => Sugar()));
               },
             ),
             ListTile(
-              title: Text('Contacts'),
+              title: Text('My Account'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('House Help'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => MyAccount()));
               },
             ),
           ],
@@ -579,18 +618,14 @@ class Sugar extends StatelessWidget {
         ],
       ),
       drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
         child: ListView(
-          // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: <Widget>[
             Container(
               height: 100.0,
               child: DrawerHeader(
                 child: Text(
-                  'At your sevice',
+                  'At your service',
                   style: TextStyle(fontSize: 40.0),
                 ),
                 decoration: BoxDecoration(
@@ -599,35 +634,22 @@ class Sugar extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('go back'),
+              title: Text('Home'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                runApp(MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Medicines',
-                  home: MyApp(),
-                ));
-                Navigator.pop(context);
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => MyHomePage()));
+              },
+            ),
+            ListTile(
+              title: Text('Reminder'),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => NewReminder()));
               },
             ),
             ListTile(
               title: Text('Medicines'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => MyMedicineReminder()));
-              },
-            ),
-            ListTile(
-              title: Text('Reminders'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) => Reminders()));
               },
@@ -635,9 +657,6 @@ class Sugar extends StatelessWidget {
             ListTile(
               title: Text('Prescriptions'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => Prescriptions()));
               },
@@ -645,30 +664,15 @@ class Sugar extends StatelessWidget {
             ListTile(
               title: Text('Blood Pressure'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => BloodPressure()));
               },
             ),
             ListTile(
-              title: Text('Contacts'),
+              title: Text('My Account'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('House Help'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => MyAccount()));
               },
             ),
           ],
@@ -701,11 +705,7 @@ class MyAccount extends StatelessWidget {
         ),
       ),
       drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
         child: ListView(
-          // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: <Widget>[
             Container(
@@ -728,14 +728,14 @@ class MyAccount extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text('Medicines'),
+              title: Text('Reminder'),
               onTap: () {
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => MyMedicineReminder()));
+                    .push(MaterialPageRoute(builder: (context) => NewReminder()));
               },
             ),
             ListTile(
-              title: Text('Reminders'),
+              title: Text('Medicines'),
               onTap: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) => Reminders()));
@@ -760,25 +760,6 @@ class MyAccount extends StatelessWidget {
               onTap: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) => Sugar()));
-              },
-            ),
-            ListTile(
-              title: Text('Contacts'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('House Help'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
               },
             ),
           ],
