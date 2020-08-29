@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
       spacing: 20, // to apply margin in the main axis of the wrap
       runSpacing: 20,
       children: <Widget>[
-        Container(height: 30,),
+        Container(height: 20,),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -125,6 +125,42 @@ class _HomeState extends State<Home> {
         Row(
           children: <Widget>[
             Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(_dateTime == null
+                      ? 'Date has not been picked yet'
+                      : dateStr,
+                    style: TextStyle(
+                        fontSize: 18
+                    ),),
+                  RaisedButton(
+                    child: Text('Pick a date'),
+                    onPressed: () {
+                      showDatePicker(
+                          context: context,
+                          initialDate: _dateTime == null
+                              ? DateTime.now()
+                              : _dateTime,
+                          firstDate: DateTime(2001),
+                          lastDate: DateTime(2021))
+                          .then((date) {
+                        setState(() {
+                          _dateTime = date;
+                          dateStr = "${_dateTime.toLocal()}".split(' ')[0];
+                          inputBPandSugar();
+                        },);
+                      });
+                    },
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Expanded(
               child: TextFormField(
                 decoration: new InputDecoration(
                   labelText: "To-Do List",
@@ -142,42 +178,6 @@ class _HomeState extends State<Home> {
                 style: new TextStyle(
                   fontFamily: "Poppins",
                 ),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(_dateTime == null
-                      ? 'Date has not been picked yet'
-                      : dateStr,
-                  style: TextStyle(
-                    fontSize: 18
-                  ),),
-                  RaisedButton(
-                    child: Text('Pick a date'),
-                    onPressed: () {
-                      showDatePicker(
-                          context: context,
-                          initialDate: _dateTime == null
-                              ? DateTime.now()
-                              : _dateTime,
-                          firstDate: DateTime(2001),
-                          lastDate: DateTime(2021))
-                          .then((date) {
-                        setState(() {
-                          _dateTime = date;
-                          dateStr = "${_dateTime.toLocal()}".split(' ')[0];
-                          inputBPandSugar();
-                          },);
-                      });
-                    },
-                  )
-                ],
               ),
             ),
           ],
