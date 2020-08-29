@@ -60,11 +60,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final CallService _service = locator<CallService>();
-  String number;
-  DateTime _dateTime;
-  String bps = "";
-  String bpd = "";
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: Text('Medicines'),
                 onTap: () {
                   Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => Medicines()));
+                      .push(MaterialPageRoute(builder: (context) => MyMedicineReminder()));
                 },
               ),
               ListTile(
@@ -158,192 +153,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.pop(context);
                 },
               ),
-<<<<<<< HEAD
-            ],
-          ),
-          Center(
-            child: PopupMenuButton<int>(
-              itemBuilder: (context) => [
-                PopupMenuItem(
-                  value: 1,
-                  child: Text("Ambulance"),
-                ),
-                PopupMenuItem(
-                  value: 2,
-                  child: Text("Police"),
-                ),
-                PopupMenuItem(
-                  value: 3,
-                  child: Text("Fire"),
-                ),
-                PopupMenuItem(
-                  value: 4,
-                  child: Text("Family 1"),
-                ),
-                PopupMenuItem(
-                  value: 5,
-                  child: Text("Family 2"),
-                ),
-              ],
-              onCanceled: () {
-                print("You have canceled the call");
-              },
-              onSelected: (value) {
-                if (value == 1)
-                  number = '102';
-                else if (value == 2)
-                  number = '100';
-                else if (value == 3)
-                  number = '101';
-                else if (value == 4)
-                  number = 'XXX';
-                else if (value == 5) number = 'XXX';
-                _service.call(number);
-              },
-              child: CircleAvatar(
-                backgroundColor: Colors.red,
-                radius: 50,
-                child: Text(
-                  'EMERGENCY',
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-=======
-              ListTile(
-                title: Text('My Account'),
-                onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => MyAccount()));
-                },
->>>>>>> 6753d03f049d681d270eb20541a4dc53882bebef
-              ),
             ],
           ),
         ),
-    );
-  }
-}
-
-class Medicines extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('medicines')),
-      body: Center(
-        child: RaisedButton(
-          child: Text('Add a new medicine'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => NewMedicine()),
-            );
-          },
-        ),
-      ),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            Container(
-              height: 100.0,
-              child: DrawerHeader(
-                child: Text(
-                  'At your service',
-                  style: TextStyle(fontSize: 40.0),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text('Home'),
-              onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => MyHomePage()));
-              },
-            ),
-            ListTile(
-              title: Text('Reminders'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Reminders()));
-              },
-            ),
-            ListTile(
-              title: Text('Prescriptions'),
-              onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Prescriptions()));
-              },
-            ),
-            ListTile(
-              title: Text('Blood Pressure'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => BloodPressure()));
-              },
-            ),
-            ListTile(
-              title: Text('Sugar'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Sugar()));
-              },
-            ),
-            ListTile(
-              title: Text('Contacts'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('House Help'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('My Account'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => MyAccount()));
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class NewMedicine extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("New medicine"),
-      ),
-      body: Center(child: Text('hello')),
     );
   }
 }
@@ -357,115 +169,9 @@ class _PrescriptionsState extends State<Prescriptions> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     print('Prescription');
-    return Scaffold(
-      appBar: AppBar(title: Text('Prescriptions')),
-      body: Column(
-        children: <Widget>[
-          RaisedButton.icon(
-            label: _image == null
-                ? Text('Add a new prescription')
-                : Text('Prescription added'),
-            icon: Icon(Icons.add_a_photo),
-            onPressed: _getImage,
-          ),
-          Container(
-            child: Image.file(
-              _image,
-              height: 200,
-              width: 200,
-            ),
-          ),
-        ],
-      ),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            Container(
-              height: 100.0,
-              child: DrawerHeader(
-                child: Text(
-                  'At your service',
-                  style: TextStyle(fontSize: 40.0),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text('Home'),
-              onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => MyHomePage()));
-              },
-            ),
-            ListTile(
-              title: Text('Medicines'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Medicines()));
-              },
-            ),
-            ListTile(
-              title: Text('Reminders'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Reminders()));
-              },
-            ),
-            ListTile(
-              title: Text('Blood Pressure'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => BloodPressure()));
-              },
-            ),
-            ListTile(
-              title: Text('Sugar'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Sugar()));
-              },
-            ),
-            ListTile(
-              title: Text('Contacts'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-=======
->>>>>>> 6753d03f049d681d270eb20541a4dc53882bebef
-
-    return Scaffold(
-      body: AddPrescription(),
-    );
+    return AddPrescription();
   }
-<<<<<<< HEAD
-
-  Future _getImage() async {
-    //PickedFile image = await _picker.getImage(source: ImageSource.gallery);
-    File image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      _image = image;
-      print('_image: $_image');
-    });
-  }
-=======
->>>>>>> 6753d03f049d681d270eb20541a4dc53882bebef
 }
 
 class Reminders extends StatelessWidget {
@@ -479,7 +185,7 @@ class Reminders extends StatelessWidget {
           child: Text('Add a new Mediminder'),
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => MyMedicineRemainder()));
+                MaterialPageRoute(builder: (context) => MyMedicineReminder()));
           },
         ),
       ),
@@ -514,7 +220,7 @@ class Reminders extends StatelessWidget {
               title: Text('Medicines'),
               onTap: () {
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Medicines()));
+                    .push(MaterialPageRoute(builder: (context) => MyMedicineReminder()));
               },
             ),
             ListTile(
@@ -590,14 +296,14 @@ class NewReminder extends StatelessWidget {
   }
 }
 
-class MyMedicineRemainder extends StatefulWidget {
-  MyMedicineRemainder();
+class MyMedicineReminder extends StatefulWidget {
+  MyMedicineReminder();
 
   @override
   _MyMedicineReminder createState() => _MyMedicineReminder();
 }
 
-class _MyMedicineReminder extends State<MyMedicineRemainder> {
+class _MyMedicineReminder extends State<MyMedicineReminder> {
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
@@ -769,7 +475,7 @@ class BloodPressure extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Medicines()));
+                    .push(MaterialPageRoute(builder: (context) => MyMedicineReminder()));
               },
             ),
             ListTile(
@@ -913,7 +619,7 @@ class Sugar extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Medicines()));
+                    .push(MaterialPageRoute(builder: (context) => MyMedicineReminder()));
               },
             ),
             ListTile(
@@ -1025,7 +731,7 @@ class MyAccount extends StatelessWidget {
               title: Text('Medicines'),
               onTap: () {
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Medicines()));
+                    .push(MaterialPageRoute(builder: (context) => MyMedicineReminder()));
               },
             ),
             ListTile(

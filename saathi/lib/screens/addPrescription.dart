@@ -74,7 +74,7 @@ class _AddPrescriptionState extends State<AddPrescription> {
               title: Text('Medicines'),
               onTap: () {
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Medicines()));
+                    .push(MaterialPageRoute(builder: (context) => MyMedicineReminder()));
               },
             ),
             ListTile(
