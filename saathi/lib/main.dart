@@ -1,31 +1,18 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:saathi/screens/addPrescription.dart';
+import 'package:saathi/screens/authenticate/account.dart';
 import 'package:saathi/screens/authenticate/authenticate.dart';
+import 'package:saathi/screens/bloodPressureDisplay.dart';
 import 'package:saathi/screens/home.dart';
+import 'package:saathi/screens/medicineReminder.dart';
+import 'package:saathi/screens/sugarDisplay.dart';
 import 'package:saathi/services/auth.dart';
-import 'package:saathi/services/database.dart';
 import 'services/call_service.dart';
-import 'package:image_picker/image_picker.dart';
 import 'screens/wrapper.dart';
 import 'models/user.dart';
-import 'models/prescription.dart';
-
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:saathi/animations/fade_animation.dart';
-import 'package:saathi/widgets/AddMedicine.dart';
-import 'package:saathi/widgets/MedicineEmptyState.dart';
-import 'package:scoped_model/scoped_model.dart';
-
-import 'enums/icon_enum.dart';
-import 'models/Medicine.dart';
-import 'widgets/AppBar.dart';
-import 'widgets/DeleteIcon.dart';
-import 'widgets/MedicineGridView.dart';
 
 GetIt locator = GetIt.I;
 
@@ -322,13 +309,6 @@ class NewReminder extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text('Reminder'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => NewReminder()));
-              },
-            ),
-            ListTile(
               title: Text('Medicines'),
               onTap: () {
                 Navigator.of(context)
@@ -370,144 +350,12 @@ class NewReminder extends StatelessWidget {
   }
 }
 
-class MyMedicineReminder extends StatefulWidget {
-  MyMedicineReminder();
-
-  @override
-  _MyMedicineReminder createState() => _MyMedicineReminder();
-}
-
-class _MyMedicineReminder extends State<MyMedicineReminder> {
-  @override
-  Widget build(BuildContext context) {
-    final deviceHeight = MediaQuery.of(context).size.height;
-    MedicineModel model;
-    return ScopedModel<MedicineModel>(
-      model: model = MedicineModel(),
-      child: Scaffold(
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              buildBottomSheet(deviceHeight, model);
-            },
-            child: Icon(
-              Icons.add,
-              size: 40,
-              color: Colors.white,
-            ),
-            backgroundColor: Theme.of(context).accentColor,
-          ),
-          body: SafeArea(
-            child: Column(
-              children: <Widget>[
-                MyAppBar(greenColor: Theme.of(context).primaryColor),
-                Expanded(
-                  child: ScopedModelDescendant<MedicineModel>(
-                    builder: (context, child, model) {
-                      return Stack(children: <Widget>[
-                        buildMedicinesView(model),
-                        (model.getCurrentIconState() == DeleteIconState.hide)
-                            ? Container()
-                            : DeleteIcon()
-                      ]);
-                    },
-                  ),
-                )
-              ],
-            ),
-          )),
-    );
-  }
-
-  FutureBuilder buildMedicinesView(model) {
-    return FutureBuilder(
-      future: model.getMedicineList(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          print(snapshot.data);
-          if (snapshot.data.length == 0) {
-            // No data
-            return Center(child: MedicineEmptyState());
-          }
-          return MedicineGridView(snapshot.data);
-        }
-        return (Container());
-      },
-    );
-  }
-
-  void buildBottomSheet(double height, MedicineModel model) async {
-    var medicineId = await showModalBottomSheet(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(45), topRight: Radius.circular(45))),
-        context: context,
-        isScrollControlled: true,
-        builder: (context) {
-          return FadeAnimation(
-            .6,
-            AddMedicine(height, model.getDatabase(), model.notificationManager),
-          );
-        });
-
-    if (medicineId != null) {
-      Fluttertoast.showToast(
-          msg: "Mediminder was added!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIos: 1,
-          backgroundColor: Theme.of(context).accentColor,
-          textColor: Colors.white,
-          fontSize: 20.0);
-
-      setState(() {});
-    }
-  }
-}
-
 class BloodPressure extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Blood Pressure')),
-      body: ListView(
-        children: const <Widget>[
-          Card(
-            child: ListTile(
-              title: Text('Systolic: 120     Diastolic: 80 '),
-              subtitle: Text('Date: 21/08/20'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-                title: Text('Systolic: 132     Diastolic: 75'),
-                subtitle: Text('Date: 22/08/20')),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('Systolic: 125     Diastolic: 72'),
-              subtitle: Text('Date: 23/08/20'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('Systolic: 130     Diastolic: 77 '),
-              subtitle: Text('Date: 24/08/20'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('Systolic: 135     Diastolic: 70 '),
-              subtitle: Text('Date: 25/08/20'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('Systolic: 126     Diastolic: 74 '),
-              subtitle: Text('Date: 26/08/20'),
-            ),
-          ),
-        ],
-      ),
+      body: BPDisplay(),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -578,45 +426,7 @@ class Sugar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Sugar')),
-      body: ListView(
-        children: const <Widget>[
-          Card(
-            child: ListTile(
-              title: Text('Before meal: 4.2     After meal: 6.2 '),
-              subtitle: Text('Date: 21/08/20'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-                title: Text('Before meal: 4.5     After meal: 5.8'),
-                subtitle: Text('Date: 22/08/20')),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('Before meal: 4.3     After meal: 6.0'),
-              subtitle: Text('Date: 23/08/20'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('Before meal: 5.0     After meal: 5.1 '),
-              subtitle: Text('Date: 24/08/20'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('Before meal: 4.7     After meal: 6.3 '),
-              subtitle: Text('Date: 25/08/20'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('Before meal: 5.2     After meal: 6.8 '),
-              subtitle: Text('Date: 26/08/20'),
-            ),
-          ),
-        ],
-      ),
+      body: SugarDisplay(),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -683,27 +493,14 @@ class Sugar extends StatelessWidget {
 }
 
 class MyAccount extends StatelessWidget {
-  final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
-    print('My Account');
     return Scaffold(
       appBar: AppBar(
         title: Text("My Account"),
       ),
-      body: Center(
-        child: RaisedButton(
-          child: Text('Sign Out'),
-          onPressed: () async {
-            await _auth.signOut();
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => Authenticate()),
-            );
-          },
-        ),
-      ),
+      body: Account(),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,

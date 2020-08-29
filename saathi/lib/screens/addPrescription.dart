@@ -1,10 +1,8 @@
 import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:saathi/models/user.dart';
-import 'package:saathi/main.dart';
 import 'package:saathi/services/database.dart';
 
 class AddPrescription extends StatefulWidget {
