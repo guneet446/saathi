@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:saathi/main.dart';
-import 'package:saathi/screens/wrapper.dart';
 import 'package:saathi/services/auth.dart';
 
 class Register extends StatefulWidget {
@@ -12,17 +11,9 @@ class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
 
-  String name = '';
-  String age = '';
-  String bloodGroup = '';
   String email = '';
   String password = '';
   String error = '';
-  String emergencyContact1 = '';
-  String emergencyContact2 = '';
-  String number_1 = '';
-  String number_2 = '';
-  String number_3 = '';
 
   @override
   Widget build(BuildContext context) {

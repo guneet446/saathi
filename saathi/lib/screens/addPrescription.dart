@@ -17,22 +17,25 @@ class _AddPrescriptionState extends State<AddPrescription> {
   @override
   Widget build(BuildContext context) {
 
-      return Column(
-        children: <Widget>[
-          RaisedButton.icon(
-            label: _image == null ? Text('Add a new prescription') : Text(
-                'Prescription added'),
-            icon: Icon(Icons.add_a_photo),
-            onPressed: _getImage,
-          ),
-          Container(
-            child: Image.file(
-              _image,
-              height: 300,
-              width: 300,
+      return Center(
+        child: Column(
+          children: <Widget>[
+            Container(height: 30),
+            RaisedButton.icon(
+              label: Text('Add a new prescription'),
+              icon: Icon(Icons.add_a_photo),
+              onPressed: _getImage,
             ),
-          ),
-        ],
+            Container(height: 10),
+            Container(
+              child: Image.file(
+                _image,
+                height: 500,
+                width: 400,
+              ),
+            ),
+          ],
+        ),
       );
   }
 
