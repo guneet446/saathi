@@ -127,7 +127,7 @@ class _AddMedicineState extends State<AddMedicine> {
               labelText: 'Name',
               labelStyle: labelsStyle,
             ),
-            validator: (input) => (input.length < 5) ? 'Name is short' : null,
+            validator: (input) => (input.length < 4) ? 'Name is short' : null,
             onSaved: (input) => _name = input,
           ),
           TextFormField(
@@ -167,7 +167,7 @@ class _AddMedicineState extends State<AddMedicine> {
         // sehdule the notification
         manager.showNotificationDaily(medicineId, _name, _dose, hour, minute);
         // The medicine Id and Notitfaciton Id are the same
-        print('New Med id' + medicineId.toString());
+        print('New Med ID' + medicineId.toString());
         // go back
         Navigator.pop(context, medicineId);
       });
