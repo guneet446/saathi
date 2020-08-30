@@ -3,8 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:saathi/screens/addPrescription.dart';
-import 'package:saathi/screens/authenticate/account.dart';
-import 'package:saathi/screens/authenticate/authenticate.dart';
+import 'package:saathi/screens/account.dart';
 import 'package:saathi/screens/bloodPressureDisplay.dart';
 import 'package:saathi/screens/home.dart';
 import 'package:saathi/screens/medicineReminder.dart';
@@ -15,6 +14,11 @@ import 'screens/wrapper.dart';
 import 'models/user.dart';
 
 GetIt locator = GetIt.I;
+String dateStr = "";
+String bps = "";
+String bpd = "";
+String sugarb = "";
+String sugara = "";
 
 void setupLocator() {
   locator.registerSingleton(CallService());
@@ -353,6 +357,7 @@ class NewReminder extends StatelessWidget {
 class BloodPressure extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(title: Text('Blood Pressure')),
       body: BPDisplay(),

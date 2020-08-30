@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:saathi/services/call_service.dart';
 import 'package:saathi/services/database.dart';
-
 import '../main.dart';
 
 class Home extends StatefulWidget {
@@ -14,11 +13,11 @@ class _HomeState extends State<Home> {
   final CallService _service = locator<CallService>();
   String number;
   DateTime _dateTime;
-  String dateStr = "";
+  /*String dateStr = "";
   String bps = "";
   String bpd = "";
   String sugarb = "";
-  String sugara = "";
+  String sugara = "";*/
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +42,7 @@ class _HomeState extends State<Home> {
                 ),
                 onChanged: (val) {
                   setState(() => bps = val);
-                  inputBPandSugar();
+                  inputBP();
                 },
                 keyboardType: TextInputType.emailAddress,
                 style: new TextStyle(
@@ -65,7 +64,7 @@ class _HomeState extends State<Home> {
                 ),
                 onChanged: (val) {
                   setState(() => bpd = val);
-                  inputBPandSugar();
+                  inputBP();
                 },
                 keyboardType: TextInputType.emailAddress,
                 style: new TextStyle(
@@ -90,7 +89,7 @@ class _HomeState extends State<Home> {
                 ),
                 onChanged: (val) {
                   setState(() => sugarb = val);
-                  inputBPandSugar();
+                  inputSugar();
                 },
                 keyboardType: TextInputType.emailAddress,
                 style: new TextStyle(
@@ -112,7 +111,7 @@ class _HomeState extends State<Home> {
                 ),
                 onChanged: (val) {
                   setState(() => sugara = val);
-                  inputBPandSugar();
+                  inputSugar();
                 },
                 keyboardType: TextInputType.emailAddress,
                 style: new TextStyle(
@@ -132,8 +131,9 @@ class _HomeState extends State<Home> {
                       ? 'Date has not been picked yet'
                       : dateStr,
                     style: TextStyle(
-                        fontSize: 18
+                        fontSize: 16
                     ),),
+                  Container(height: 5,),
                   RaisedButton(
                     child: Text('Pick a date'),
                     onPressed: () {
@@ -148,7 +148,8 @@ class _HomeState extends State<Home> {
                         setState(() {
                           _dateTime = date;
                           dateStr = "${_dateTime.toLocal()}".split(' ')[0];
-                          inputBPandSugar();
+                          inputBP();
+                          inputSugar();
                         },);
                       });
                     },
@@ -158,6 +159,7 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
+        Container(height: 5,),
         Row(
           children: <Widget>[
             Expanded(
@@ -224,11 +226,11 @@ class _HomeState extends State<Home> {
             },
             child: CircleAvatar(
               backgroundColor: Colors.red,
-              radius: 50,
+              radius: 55,
               child: Text(
                 'EMERGENCY',
                 style: TextStyle(
-                    fontSize: 15,
+                    fontSize: 17,
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
               ),
@@ -240,9 +242,19 @@ class _HomeState extends State<Home> {
   }
   final FirebaseAuth auth = FirebaseAuth.instance;
 
-  void inputBPandSugar() async {
+  void inputBP() async{
     final FirebaseUser user = await auth.currentUser();
     final uid = user.uid;
-    await DatabaseService(uid: uid).addBpandSugar(bps, bpd, sugarb, sugara, dateStr);
+    await DatabaseService(uid: uid).addBP(bps, bpd, dateStr);
+  }
+
+  void inputSugar() async{
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+    await DatabaseService(uid: uid).addSugar(sugarb, sugara, dateStr);
+  }
+
+  String getBP(){
+    return bps;
   }
 }

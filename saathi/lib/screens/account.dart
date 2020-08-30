@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:saathi/services/auth.dart';
 
-import 'authenticate.dart';
+import 'authenticate/authenticate.dart';
 
 class Account extends StatelessWidget {
   final AuthService _auth = AuthService();
