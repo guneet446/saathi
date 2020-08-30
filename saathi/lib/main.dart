@@ -19,6 +19,7 @@ String bps = "";
 String bpd = "";
 String sugarb = "";
 String sugara = "";
+List<String> tasks = [];
 
 void setupLocator() {
   locator.registerSingleton(CallService());
@@ -72,13 +73,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.blue,
                   ),
                 ),
-              ),
-              ListTile(
-                title: Text('Reminder'),
-                onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => NewReminder()));
-                },
               ),
               ListTile(
                 title: Text('Medicines'),
@@ -159,13 +153,6 @@ class _PrescriptionsState extends State<Prescriptions> {
               },
             ),
             ListTile(
-              title: Text('Reminder'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => NewReminder()));
-              },
-            ),
-            ListTile(
               title: Text('Medicines'),
               onTap: () {
                 Navigator.of(context)
@@ -239,13 +226,6 @@ class Reminders extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text('Reminder'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => NewReminder()));
-              },
-            ),
-            ListTile(
               title: Text('Prescriptions'),
               onTap: () {
                 Navigator.of(context).push(
@@ -280,79 +260,6 @@ class Reminders extends StatelessWidget {
   }
 }
 
-class NewReminder extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    print('New Reminder');
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("New reminder"),
-      ),
-      body: Center(child: Text('heyyy')),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            Container(
-              height: 100.0,
-              child: DrawerHeader(
-                child: Text(
-                  'At your service',
-                  style: TextStyle(fontSize: 40.0),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text('Home'),
-              onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => MyHomePage()));
-              },
-            ),
-            ListTile(
-              title: Text('Medicines'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Reminders()));
-              },
-            ),
-            ListTile(
-              title: Text('Prescriptions'),
-              onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Prescriptions()));
-              },
-            ),
-            ListTile(
-              title: Text('Blood Pressure'),
-              onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => BloodPressure()));
-              },
-            ),
-            ListTile(
-              title: Text('Sugar'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Sugar()));
-              },
-            ),
-            ListTile(
-              title: Text('My Account'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => MyAccount()));
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class BloodPressure extends StatelessWidget {
   @override
@@ -382,13 +289,6 @@ class BloodPressure extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => MyHomePage()));
-              },
-            ),
-            ListTile(
-              title: Text('Reminder'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => NewReminder()));
               },
             ),
             ListTile(
@@ -456,13 +356,6 @@ class Sugar extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text('Reminder'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => NewReminder()));
-              },
-            ),
-            ListTile(
               title: Text('Medicines'),
               onTap: () {
                 Navigator.of(context)
@@ -527,13 +420,6 @@ class MyAccount extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => MyHomePage()));
-              },
-            ),
-            ListTile(
-              title: Text('Reminder'),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => NewReminder()));
               },
             ),
             ListTile(
