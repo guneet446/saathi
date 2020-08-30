@@ -19,6 +19,11 @@ String bps = "";
 String bpd = "";
 String sugarb = "";
 String sugara = "";
+String name;
+String age = '';
+String bloodGroup = '';
+String emergencyContact1 = '';
+String emergencyContact2 = '';
 List<String> tasks = [];
 
 void setupLocator() {
