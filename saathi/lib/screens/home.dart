@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:saathi/screens/toDoList.dart';
 import 'package:saathi/services/call_service.dart';
 import 'package:saathi/services/database.dart';
 import '../main.dart';
@@ -13,19 +14,14 @@ class _HomeState extends State<Home> {
   final CallService _service = locator<CallService>();
   String number;
   DateTime _dateTime;
-  /*String dateStr = "";
-  String bps = "";
-  String bpd = "";
-  String sugarb = "";
-  String sugara = "";*/
 
   @override
   Widget build(BuildContext context) {
     return Wrap(
       spacing: 20, // to apply margin in the main axis of the wrap
-      runSpacing: 20,
+      runSpacing: 18,
       children: <Widget>[
-        Container(height: 20,),
+        Container(height: 10,),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -159,31 +155,14 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-        Container(height: 5,),
-        Row(
-          children: <Widget>[
-            Expanded(
-              child: TextFormField(
-                decoration: new InputDecoration(
-                  labelText: "To-Do List",
-                  fillColor: Colors.white,
-                  border: new OutlineInputBorder(
-                    borderRadius: new BorderRadius.circular(25.0),
-                    borderSide: new BorderSide(),
-                  ),
-                  //fillColor: Colors.green
-                ),
-
-                keyboardType: TextInputType.multiline,
-                minLines: 5, //Normal textInputField will be displayed
-                maxLines: 5,
-                style: new TextStyle(
-                  fontFamily: "Poppins",
-                ),
-              ),
-            ),
-          ],
-        ),
+        Text(
+          "To Do List",
+        style: TextStyle(
+          fontFamily: "Poppins",
+          fontSize: 20,
+          fontWeight: FontWeight.bold
+        ),),
+        ToDoList(),
         Center(
           child: PopupMenuButton<int>(
             itemBuilder: (context) => [
