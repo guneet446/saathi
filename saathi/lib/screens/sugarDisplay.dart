@@ -46,6 +46,12 @@ class _SugarDisplayState extends State<SugarDisplay> {
             subtitle: Text('Date: 2020-08-25'),
           ),
         ),
+        Card(
+          child: ListTile(
+            title: Text('Before meal: 93     After meal: 120 '),
+            subtitle: Text('Date: 2020-08-24'),
+          ),
+        ),
       ],
     );
   }

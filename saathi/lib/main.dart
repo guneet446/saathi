@@ -19,7 +19,7 @@ String bps = "";
 String bpd = "";
 String sugarb = "";
 String sugara = "";
-String name;
+String name = '';
 String age = '';
 String bloodGroup = '';
 String emergencyContact1 = '';
@@ -40,8 +40,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamProvider<User>.value(
       value: AuthService().user,
-      /*child: StreamProvider<List<Prescription>>.value(
-        value: DatabaseService().prescription,*/
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           home: Wrapper(),
@@ -61,7 +59,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
       return Scaffold(
-        appBar: AppBar(title: Text('Saathi')),
+        appBar: AppBar(
+            title: Text(
+                'Saathi',
+            style: TextStyle(
+              fontSize: 28,
+              color: Colors.white,
+            ),),
+        backgroundColor: Color(0xff52796f),),
         body: Home(),
         drawer: Drawer(
           child: ListView(
@@ -72,10 +77,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: DrawerHeader(
                   child: Text(
                     'At your service',
-                    style: TextStyle(fontSize: 40.0),
+                    style: TextStyle(
+                        fontSize: 28.0,
+                    color: Colors.white,),
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: Color(0xfff6bd60),
                   ),
                 ),
               ),
@@ -132,7 +139,9 @@ class _PrescriptionsState extends State<Prescriptions> {
   Widget build(BuildContext context) {
     print('Prescription');
     return Scaffold(
-      appBar: AppBar(title: Text('Prescriptions')),
+      appBar: AppBar(
+          title: Text('Prescriptions',),
+      backgroundColor: Color(0xfff28482),),
       body: AddPrescription(),
       drawer: Drawer(
         child: ListView(
@@ -143,10 +152,12 @@ class _PrescriptionsState extends State<Prescriptions> {
               child: DrawerHeader(
                 child: Text(
                   'At your service',
-                  style: TextStyle(fontSize: 40.0),
+                  style: TextStyle(
+                    fontSize: 28.0,
+                    color: Colors.white,),
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Color(0xfff6bd60),
                 ),
               ),
             ),
@@ -197,9 +208,11 @@ class Reminders extends StatelessWidget {
   Widget build(BuildContext context) {
     print('Reminders');
     return Scaffold(
-      appBar: AppBar(title: Text('Mediminder')),
+      appBar: AppBar(title: Text('Mediminder'),
+          backgroundColor: Color(0xfff28482),),
       body: Center(
         child: RaisedButton(
+            color: Color(0xfff6bd60),
           child: Text('Add a new Mediminder'),
           onPressed: () {
             Navigator.push(context,
@@ -216,10 +229,12 @@ class Reminders extends StatelessWidget {
               child: DrawerHeader(
                 child: Text(
                   'At your service',
-                  style: TextStyle(fontSize: 40.0),
+                  style: TextStyle(
+                    fontSize: 28.0,
+                    color: Colors.white,),
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Color(0xfff6bd60),
                 ),
               ),
             ),
@@ -271,7 +286,8 @@ class BloodPressure extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(title: Text('Blood Pressure')),
+      appBar: AppBar(title: Text('Blood Pressure'),
+        backgroundColor: Color(0xfff28482),),
       body: BPDisplay(),
       drawer: Drawer(
         child: ListView(
@@ -282,10 +298,12 @@ class BloodPressure extends StatelessWidget {
               child: DrawerHeader(
                 child: Text(
                   'At your service',
-                  style: TextStyle(fontSize: 40.0),
+                  style: TextStyle(
+                    fontSize: 28.0,
+                    color: Colors.white,),
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Color(0xfff6bd60),
                 ),
               ),
             ),
@@ -335,7 +353,8 @@ class Sugar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Sugar')),
+      appBar: AppBar(title: Text('Sugar'),
+        backgroundColor: Color(0xfff28482),),
       body: SugarDisplay(),
       drawer: Drawer(
         child: ListView(
@@ -346,10 +365,12 @@ class Sugar extends StatelessWidget {
               child: DrawerHeader(
                 child: Text(
                   'At your service',
-                  style: TextStyle(fontSize: 40.0),
+                  style: TextStyle(
+                    fontSize: 28.0,
+                    color: Colors.white,),
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Color(0xfff6bd60),
                 ),
               ),
             ),
@@ -402,6 +423,7 @@ class MyAccount extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("My Account"),
+        backgroundColor: Color(0xfff28482),
       ),
       body: Account(),
       drawer: Drawer(
@@ -413,10 +435,12 @@ class MyAccount extends StatelessWidget {
               child: DrawerHeader(
                 child: Text(
                   'At your service',
-                  style: TextStyle(fontSize: 40.0),
+                  style: TextStyle(
+                    fontSize: 28.0,
+                    color: Colors.white,),
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Color(0xfff6bd60),
                 ),
               ),
             ),

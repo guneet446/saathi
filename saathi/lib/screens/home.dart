@@ -5,8 +5,6 @@ import 'package:saathi/services/call_service.dart';
 import 'package:saathi/services/database.dart';
 import '../main.dart';
 
-String a = bps;
-
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -20,7 +18,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+      padding: const EdgeInsets.fromLTRB(10, 25, 10, 0),
       child: Wrap(
         spacing: 20, // to apply margin in the main axis of the wrap
         runSpacing: 18,
@@ -32,12 +30,12 @@ class _HomeState extends State<Home> {
                 child: TextFormField(
                   decoration: new InputDecoration(
                     labelText: "BP systolic",
-                    fillColor: Colors.white,
+                    filled: true,
+                    fillColor: Color(0xfff7ede2),
                     border: new OutlineInputBorder(
                       borderRadius: new BorderRadius.circular(25.0),
                       borderSide: new BorderSide(),
                     ),
-                    //fillColor: Colors.green
                   ),
                   onChanged: (val) {
                     setState(() => bps = val);
@@ -54,7 +52,8 @@ class _HomeState extends State<Home> {
                 child: TextFormField(
                   decoration: new InputDecoration(
                     labelText: "BP diastolic",
-                    fillColor: Colors.white,
+                    filled: true,
+                    fillColor: Color(0xfff7ede2),
                     border: new OutlineInputBorder(
                       borderRadius: new BorderRadius.circular(25.0),
                       borderSide: new BorderSide(),
@@ -79,12 +78,12 @@ class _HomeState extends State<Home> {
                 child: TextFormField(
                   decoration: new InputDecoration(
                     labelText: "Sugar before meal",
-                    fillColor: Colors.white,
+                    fillColor: Color(0xfff7ede2),
+                    filled: true,
                     border: new OutlineInputBorder(
                       borderRadius: new BorderRadius.circular(25.0),
                       borderSide: new BorderSide(),
                     ),
-                    //fillColor: Colors.green
                   ),
                   onChanged: (val) {
                     setState(() => sugarb = val);
@@ -101,12 +100,12 @@ class _HomeState extends State<Home> {
                 child: TextFormField(
                   decoration: new InputDecoration(
                     labelText: "Sugar after meal",
-                    fillColor: Colors.white,
+                    fillColor: Color(0xfff7ede2),
+                    filled: true,
                     border: new OutlineInputBorder(
                       borderRadius: new BorderRadius.circular(25.0),
                       borderSide: new BorderSide(),
                     ),
-                    //fillColor: Colors.green
                   ),
                   onChanged: (val) {
                     setState(() => sugara = val);
@@ -134,6 +133,7 @@ class _HomeState extends State<Home> {
                       ),),
                     Container(height: 5,),
                     RaisedButton(
+                      color: Color(0xfff6bd60),
                       child: Text('Pick a date'),
                       onPressed: () {
                         showDatePicker(
@@ -163,7 +163,8 @@ class _HomeState extends State<Home> {
           style: TextStyle(
             fontFamily: "Poppins",
             fontSize: 20,
-            fontWeight: FontWeight.bold
+            fontWeight: FontWeight.bold,
+            color: Color(0xff354f52)
           ),),
           ToDoList(),
           Center(
@@ -201,13 +202,13 @@ class _HomeState extends State<Home> {
                 else if (value == 3)
                   number = '101';
                 else if (value == 4)
-                  number = 'XXX';
+                  number = emergencyContact1;
                 else if (value == 5)
-                  number = 'XXX';
+                  number = emergencyContact2;
                 _service.call(number);
               },
               child: CircleAvatar(
-                backgroundColor: Colors.red,
+                backgroundColor: Color(0xffE63946),
                 radius: 55,
                 child: Text(
                   'EMERGENCY',

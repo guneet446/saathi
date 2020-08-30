@@ -67,6 +67,7 @@ class _ToDoListState extends State<ToDoList> {
             builder: (context) {
               return new Scaffold(
                   appBar: new AppBar(
+                    backgroundColor: Color(0xff84a59d),
                       title: new Text('Add a new task')
                   ),
                   body: new TextField(
@@ -95,7 +96,7 @@ class _ToDoListState extends State<ToDoList> {
         height: 150,
         decoration: BoxDecoration(
           border: Border.all(
-              color: Colors.blue,
+              color: Color(0xff84a59d),
               width: 3
           ),
           borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -103,6 +104,7 @@ class _ToDoListState extends State<ToDoList> {
         child: Scaffold(
           body: _buildTodoList(),
           floatingActionButton: new FloatingActionButton(
+              backgroundColor: Color(0xff84a59d),
               onPressed: _pushAddTodoScreen,
               tooltip: 'Add task',
               child: new Icon(Icons.add)

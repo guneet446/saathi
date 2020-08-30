@@ -22,6 +22,7 @@ class _AddPrescriptionState extends State<AddPrescription> {
           children: <Widget>[
             Container(height: 30),
             RaisedButton.icon(
+              color: Color(0xfff6bd60),
               label: Text('Add a new prescription'),
               icon: Icon(Icons.add_a_photo),
               onPressed: _getImage,

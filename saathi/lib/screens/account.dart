@@ -78,8 +78,8 @@ class Account extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   border: Border.all(
-                      color: Colors.blue,
-                      width: 3
+                      color: Color(0xff84a59d),
+                      width: 8
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
@@ -87,6 +87,7 @@ class Account extends StatelessWidget {
               Container(height: 40,),
               RaisedButton(
                 child: Text('Sign Out'),
+                color: Color(0xfff6bd60),
                 onPressed: () async {
                   await _auth.signOut();
                   Navigator.pushReplacement(
