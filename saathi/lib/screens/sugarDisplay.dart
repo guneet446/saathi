@@ -19,30 +19,30 @@ class _SugarDisplayState extends State<SugarDisplay> {
         ),
         Card(
           child: ListTile(
-              title: Text('Before meal: 4.5     After meal: 5.8'),
+              title: Text('Before meal: 85     After meal: 130'),
               subtitle: Text('Date: 2020-08-29')),
         ),
         Card(
           child: ListTile(
-            title: Text('Before meal: 4.3     After meal: 6.0'),
+            title: Text('Before meal: 76     After meal: 128'),
             subtitle: Text('Date: 2020-08-28'),
           ),
         ),
         Card(
           child: ListTile(
-            title: Text('Before meal: 5.0     After meal: 5.1 '),
+            title: Text('Before meal: 83     After meal: 132 '),
             subtitle: Text('Date: 2020-08-27'),
           ),
         ),
         Card(
           child: ListTile(
-            title: Text('Before meal: 4.7     After meal: 6.3 '),
+            title: Text('Before meal: 88     After meal: 112 '),
             subtitle: Text('Date: 2020-08-26'),
           ),
         ),
         Card(
           child: ListTile(
-            title: Text('Before meal: 5.2     After meal: 6.8 '),
+            title: Text('Before meal: 95     After meal: 125 '),
             subtitle: Text('Date: 2020-08-25'),
           ),
         ),
